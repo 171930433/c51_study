@@ -6,5 +6,6 @@
 #define KEY_PRESSED 0
 
 bit KeyIsPushed(unsigned char number);
+bit KeyIsPoped(unsigned char number);
 
 #endif

@@ -1,6 +1,6 @@
 #include "delay.h"
 
-void Delay(unit8 ms)
+void Delay(unsigned int ms)
 {
     unsigned char i, j;
     while (ms--)

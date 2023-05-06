@@ -3,15 +3,27 @@
 #include "independent_keys.h"
 #include "delay.h"
 
-void ControlLed();
+void ControlLed();	// 按钮按下点亮led
+void ControlLed2(); // 按钮弹出时点亮led
 
 void main()
 {
-	unsigned char offset[4] = {1, 0, 2, 3};
-
 	while (1)
 	{
-		ControlLed();
+		ControlLed2();
+	}
+}
+
+void ControlLed2()
+{
+
+	int i = 0;
+	for (i = 0; i < 4; ++i)
+	{
+		if (KeyIsPoped(i))
+		{
+			ReverseLenN(i);
+		}
 	}
 }
 
