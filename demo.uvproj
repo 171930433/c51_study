@@ -388,6 +388,66 @@
               <FileType>5</FileType>
               <FilePath>.\independent_keys.h</FilePath>
             </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>nixie_tube.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\nixie_tube.c</FilePath>
+            </File>
+            <File>
+              <FileName>nixie_tube.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\nixie_tube.h</FilePath>
+            </File>
+            <File>
+              <FileName>lcd1602.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lcd1602.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd1602.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lcd1602.h</FilePath>
+            </File>
+            <File>
+              <FileName>matrix_keys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\matrix_keys.c</FilePath>
+            </File>
+            <File>
+              <FileName>matrix_keys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\matrix_keys.h</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>serial.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\serial.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
