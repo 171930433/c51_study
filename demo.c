@@ -7,6 +7,7 @@
 #include "matrix_keys.h"
 #include "timer.h"
 #include "serial.h"
+#include "matrix_led.h"
 
 void ControlLed();	  // 按钮按下点亮led
 void ControlLed2();	  // 按钮弹出时点亮led
@@ -18,15 +19,20 @@ void TimerDemo1();	  // 通过两个定时器,一个高频更新数据，一个�
 
 void main()
 {
-	LCD_Init();
+	// LCD_Init();
 	UartInit();
 	UartSendByte(0x66);
+
+	MatrixLedInit();
 	while (1)
 	{
+		LightMatrixLedColumn(0, 0xff);
+		LightMatrixLedColumn(1, 0x0A);
+		LightMatrixLedColumn(2, 0xA0);
+		LightMatrixLedColumn(3, 0x05);
+		LightMatrixLedColumn(4, 0x50);
 	}
 }
-
-
 
 void LED0() { P2_0 = ~P2_0; }
 void LED1() { P2_1 = ~P2_1; }
