@@ -1,4 +1,5 @@
 #include "timer.h"
+#include "lcd1602.h"
 #include <REGX51.H>
 
 TimerCallback t0_callback = 0;
@@ -83,4 +84,23 @@ void OnTimer1() interrupt 3
     {
         t1_callback();
     }
+}
+
+
+
+void LED0() { P2_0 = ~P2_0; }
+void LED1() { P2_1 = ~P2_1; }
+void TimerDemo0() // 通过两个定时器使LED0,1以不同频率闪烁
+{
+	TimerInit(TimerIndex0, 1, LED0);
+	TimerInit(TimerIndex1, 5, LED1);
+}
+
+unsigned int number = 0;
+void UpdateData() { ++number; }
+void UpdateView() { LCD_ShowNum(1, 1, number, 5); }
+void TimerDemo1() // 通过两个定时器,一个高频更新数据，一个低频刷新显示
+{
+	TimerInit(TimerIndex0, 10, UpdateData);
+	TimerInit(TimerIndex1, 1, UpdateView);
 }

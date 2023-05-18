@@ -30,3 +30,33 @@ bit KeyIsPoped(unsigned char number)
         return 0;
     }
 }
+
+void ControlLed()
+{
+
+	int i = 0;
+	for (i = 0; i < 4; ++i)
+	{
+		if (KeyIsPushed(i))
+		{
+			LightingLedN(i);
+		}
+		else
+		{
+			TurnOffLenN(i);
+		}
+	}
+}
+
+void ControlLed2()
+{
+
+	int i = 0;
+	for (i = 0; i < 4; ++i)
+	{
+		if (KeyIsPoped(i))
+		{
+			ReverseLenN(i);
+		}
+	}
+}

@@ -1,5 +1,7 @@
 #include "matrix_keys.h"
 #include "delay.h"
+#include "lcd1602.h"
+
 #include <REGX51.H>
 
 unsigned char RowScanKeyCode()
@@ -109,4 +111,16 @@ unsigned char ColScanKeyCode2()
         }
     }
     return 0;
+}
+
+void MatrixKeyDemo()
+{
+	// 需要main函数调用
+	// LCD_Init();
+	unsigned char key = 0;
+	key = ColScanKeyCode2();
+	if (key)
+	{
+		LCD_ShowNum(1, 0, key, 2);
+	}
 }

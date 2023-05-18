@@ -9,32 +9,15 @@ void NixieOn(unsigned char index, unsigned char n)
 {
     switch (index)
     {
-    case 0:
-        P2_4 = 0, P2_3 = 0, P2_2 = 0;
-        break;
-    case 1:
-        P2_4 = 0, P2_3 = 0, P2_2 = 1;
-        break;
-    case 2:
-        P2_4 = 0, P2_3 = 1, P2_2 = 0;
-        break;
-    case 3:
-        P2_4 = 0, P2_3 = 1, P2_2 = 1;
-        break;
-    case 4:
-        P2_4 = 1, P2_3 = 0, P2_2 = 0;
-        break;
-    case 5:
-        P2_4 = 1, P2_3 = 0, P2_2 = 1;
-        break;
-    case 6:
-        P2_4 = 1, P2_3 = 1, P2_2 = 0;
-        break;
-    case 7:
-        P2_4 = 1, P2_3 = 1, P2_2 = 1;
-        break;
-    default:
-        return;
+    case 0:        P2_4 = 0, P2_3 = 0, P2_2 = 0;         break;
+    case 1:        P2_4 = 0, P2_3 = 0, P2_2 = 1;        break;
+    case 2:        P2_4 = 0, P2_3 = 1, P2_2 = 0;        break;
+    case 3:        P2_4 = 0, P2_3 = 1, P2_2 = 1;        break;
+    case 4:        P2_4 = 1, P2_3 = 0, P2_2 = 0;        break;
+    case 5:        P2_4 = 1, P2_3 = 0, P2_2 = 1;        break;
+    case 6:        P2_4 = 1, P2_3 = 1, P2_2 = 0;        break;
+    case 7:        P2_4 = 1, P2_3 = 1, P2_2 = 1;        break;
+    default:        return;
     }
 
     P0 = codes[n]; // 位选
@@ -52,4 +35,20 @@ void NixieOnNumber(unsigned int n)
         NixieOn(i, n % 10);
         n /= 10;
     }
+}
+
+
+void NixieOnDemo2()
+{
+	int i = 0;
+	for (i = 0; i < 1e8; ++i)
+	{
+		NixieOnNumber(i);
+		Delay(1);
+	}
+}
+
+void NixieOnDemo1()
+{
+	NixieOn(4, 8);
 }

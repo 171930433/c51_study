@@ -26,3 +26,4 @@ void ReverseLenN(unsigned char number)
     }
     P2 ^= (1 << number);
 }
+
