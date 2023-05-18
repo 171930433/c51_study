@@ -7,29 +7,13 @@
 // #include "matrix_keys.h"
 // #include "timer.h"
 // #include "serial.h"
-#include "matrix_led.h"
-
-
-
+// #include "matrix_led.h"
 
 void main()
 {
 	// LCD_Init();
 
-	MatrixLedInit();
 	while (1)
 	{
-		LightMatrixLedColumn(0, 0xff);
-		LightMatrixLedColumn(1, 0x0A);
-		LightMatrixLedColumn(2, 0xA0);
-		LightMatrixLedColumn(3, 0x05);
-		LightMatrixLedColumn(4, 0x50);
 	}
 }
-
-
-
-
-
-
-

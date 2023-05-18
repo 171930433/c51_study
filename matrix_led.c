@@ -17,7 +17,6 @@ void MatrixLedInit()
     _74HC595_Init();
 }
 
-
 void _74HC595_WriteBite(unsigned char index)
 {
     unsigned char i = 0;
@@ -37,5 +36,17 @@ void LightMatrixLedColumn(unsigned char col, unsigned char index)
     _74HC595_WriteBite(index);
     P0 = ~(0x80 >> col); // 7-col位置零
     Delay(1);
-    P0 = 0xff;             // 消影
+    P0 = 0xff; // 消影
+}
+
+void MatrixLedDemo()
+{
+    LightMatrixLedColumn(0, 0xff);
+    LightMatrixLedColumn(1, 0x0A);
+    LightMatrixLedColumn(2, 0xA0);
+    LightMatrixLedColumn(3, 0x05);
+    LightMatrixLedColumn(4, 0x50);
+    LightMatrixLedColumn(5, 0xC3);
+    LightMatrixLedColumn(6, 0x3C);
+    LightMatrixLedColumn(7, 0x18);
 }
