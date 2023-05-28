@@ -2,6 +2,8 @@
 #include "lcd1602.h"
 #include <REGX51.H>
 
+//TimerSetting g_ts[2] = {0};
+
 TimerCallback t0_callback = 0;
 unsigned int t0_rate_counts = 0; // 定时器设置频率,hz
 TimerCallback t1_callback = 0;
@@ -19,12 +21,29 @@ void TimerInit(unsigned char index, unsigned int rate_hz, TimerCallback fun_ptr)
     }
 }
 
+void Timer0InitRaw()
+{
+    // 时钟设置
+    TF0 = 0; // time overflow
+    // 定时器模式
+    TMOD &= 0xf0;
+    TMOD |= 0x01;
+    // 初始计数值
+    TL0 = 64535 % 0xff;
+    TH0 = 64535 / 0xff;
+    // 设置允许中断
+    ET0 = 1;
+    EA = 1;
+    PT0 = 0; // 默认即为最低优先级
+    TR0 = 1; // timer run
+}
+
 void Timer0Init(unsigned int rate_hz, TimerCallback fun_ptr)
 {
     t0_rate_counts = 1000 / rate_hz;
     // 时钟设置
-    TF0 = 0;        // time overflow
-    TR0 = 1;        // timer run 
+    TF0 = 0; // time overflow
+    TR0 = 1; // timer run
     // 定时器模式
     TMOD &= 0xf0;
     TMOD |= 0x01;
@@ -39,19 +58,26 @@ void Timer0Init(unsigned int rate_hz, TimerCallback fun_ptr)
     t0_callback = fun_ptr;
 }
 
-// 单次进入为1ms
-void OnTimer0() interrupt 1
-{
-    static unsigned int count = 0;
-    TF0 = 0;
-    TL0 = 64535 % 0xff;
-    TH0 = 64535 / 0xff;
+//void TimerInitWithSetting(TimerSetting *ts)
+//{
+//    // 保存全局配置
+//    g_ts[ts->index_] = *ts;
+//    // 设置定时器
+//}
 
-    if ((++count % t0_rate_counts) == 0)
-    {
-        t0_callback();
-    }
-}
+// 单次进入为1ms
+// void OnTimer0() interrupt 1
+// {
+//     static unsigned int count = 0;
+//     TF0 = 0;
+//     TL0 = 64535 % 0xff;
+//     TH0 = 64535 / 0xff;
+
+//     if ((++count % t0_rate_counts) == 0)
+//     {
+//         t0_callback();
+//     }
+// }
 
 void Timer1Init(unsigned int rate_hz, TimerCallback fun_ptr)
 {
@@ -86,21 +112,19 @@ void OnTimer1() interrupt 3
     }
 }
 
+// void LED0() { P2_0 = ~P2_0; }
+// void LED1() { P2_1 = ~P2_1; }
+// void TimerDemo0() // 通过两个定时器使LED0,1以不同频率闪烁
+// {
+// 	TimerInit(TimerIndex0, 1, LED0);
+// 	TimerInit(TimerIndex1, 5, LED1);
+// }
 
-
-void LED0() { P2_0 = ~P2_0; }
-void LED1() { P2_1 = ~P2_1; }
-void TimerDemo0() // 通过两个定时器使LED0,1以不同频率闪烁
-{
-	TimerInit(TimerIndex0, 1, LED0);
-	TimerInit(TimerIndex1, 5, LED1);
-}
-
-unsigned int number = 0;
-void UpdateData() { ++number; }
-void UpdateView() { LCD_ShowNum(1, 1, number, 5); }
-void TimerDemo1() // 通过两个定时器,一个高频更新数据，一个低频刷新显示
-{
-	TimerInit(TimerIndex0, 10, UpdateData);
-	TimerInit(TimerIndex1, 1, UpdateView);
-}
+// unsigned int number = 0;
+// void UpdateData() { ++number; }
+// void UpdateView() { LCD_ShowNum(1, 1, number, 5); }
+// void TimerDemo1() // 通过两个定时器,一个高频更新数据，一个低频刷新显示
+// {
+// 	TimerInit(TimerIndex0, 10, UpdateData);
+// 	TimerInit(TimerIndex1, 1, UpdateView);
+// }
